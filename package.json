@@ -1,24 +1,54 @@
 {
-  "name": "loopback-connector-sparkpost",
-  "version": "0.0.1",
-  "description": "Loopback connector module which allow to send emails via Sparkpost",
-  "main": "index.js",
-  "keywords": [
-    "loopback",
-    "sparkpost",
-    "connector",
-    "templates"
+  "_args": [
+    [
+      "loopback-connector-sparkpost",
+      "/vagrant/greenback-api"
+    ]
   ],
-  "author": {
-    "name": "Joseph Persie",
-    "email": "persie.joseph@gmail.com"
+  "_from": "loopback-connector-sparkpost@latest",
+  "_id": "loopback-connector-sparkpost@0.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/loopback-connector-sparkpost",
+  "_nodeVersion": "5.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/loopback-connector-sparkpost-0.0.1.tgz_1462311163694_0.8510819198563695"
   },
-  "license": "MIT",
+  "_npmUser": {
+    "email": "joseph@supraliminalsolutions.com",
+    "name": "zmijevik"
+  },
+  "_npmVersion": "3.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "loopback-connector-sparkpost",
+    "raw": "loopback-connector-sparkpost",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_shasum": "b1f0cbba1994e515249e103fa70cd6508ed53f0e",
+  "_shrinkwrap": null,
+  "_spec": "loopback-connector-sparkpost",
+  "_where": "/vagrant/greenback-api",
+  "author": {
+    "email": "persie.joseph@gmail.com",
+    "name": "Joseph Persie"
+  },
+  "bugs": {
+    "url": "https://github.com/nidhhoggr/loopback-connector-sparkpost/issues"
+  },
   "dependencies": {
     "lodash": "^2.4.1",
-    "sparkpost": "^1.3.3",
-    "q": "^1.0.1"
+    "q": "^1.0.1",
+    "sparkpost": "^1.3.3"
   },
+  "description": "Loopback connector module which allow to send emails via Sparkpost",
   "devDependencies": {
     "chai": "^1.9.2",
     "loopback": "^2.7.0",
@@ -26,12 +56,34 @@
     "mocha": "^2.0.1",
     "rewire": "^2.1.2"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "b1f0cbba1994e515249e103fa70cd6508ed53f0e",
+    "tarball": "https://registry.npmjs.org/loopback-connector-sparkpost/-/loopback-connector-sparkpost-0.0.1.tgz"
+  },
+  "gitHead": "5be01bc8b918b82097819717639b811510ea7f7c",
   "homepage": "https://github.com/nidhhoggr/loopback-connector-sparkpost",
+  "keywords": [
+    "connector",
+    "loopback",
+    "sparkpost",
+    "templates"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "zmijevik",
+      "email": "joseph@supraliminalsolutions.com"
+    }
+  ],
+  "name": "loopback-connector-sparkpost",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nidhhoggr/loopback-connector-sparkpost"
+    "url": "git+https://github.com/nidhhoggr/loopback-connector-sparkpost.git"
   },
-  "bugs": {
-    "url": "https://github.com/nidhhoggr/loopback-connector-sparkpost/issues"
-  }
+  "scripts": {},
+  "version": "0.0.1"
 }
