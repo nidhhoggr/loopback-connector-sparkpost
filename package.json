@@ -85,5 +85,5 @@
     "url": "git+https://github.com/nidhhoggr/loopback-connector-sparkpost.git"
   },
   "scripts": {},
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
