@@ -1,6 +1,6 @@
 ## loopback-connector-sparkpost
 
-`loopback-connector-sparkpost` is the Loopback connector module which allow to send emails via Mandrill.
+`loopback-connector-sparkpost` is the Loopback connector module which allow to send emails via Sparkpost.
 
 ## 1. Installation
 
@@ -15,7 +15,7 @@ datasources.json
     {
         "sparkpost": {
             "connector": "loopback-connector-sparkpost",
-            "apikey": "[your api key here]"
+            "apiKey": "[your api key here]"
         }
     }
 
@@ -33,10 +33,9 @@ Additionaly you can set defaults
     {
         "sparkpost": {
             "connector": "loopback-connector-sparkpost",
-            "apikey": "[your api key here]",
+            "apiKey": "[your api key here]",
             "defaults": {
-                "account": "",
-                "inline_css": true
+              "from": { name: "Bob Schmoe", email: "bob.schmoe@testing.com" }
             }
         }
     }
@@ -45,7 +44,7 @@ Configuration in JavaScript
 
     var DataSource = require('loopback-datasource-juggler').DataSource;
     var dsSparkpost = new DataSource('loopback-connector-sparkpost', {
-        apikey: '[your api key here]'
+        apiKey: '[your api key here]'
     });
     loopback.Email.attachTo(dsSparkpost);
 
@@ -75,7 +74,7 @@ Some advantages - now you can use templates from Sparkpost
         from: "test@from.com",
         subject: "subject",
         template: {
-            name: "signup-confirm",
+            id: "signup-confirm",
             content: {
                 name: "NewUser Name",
                 accountId: "123456"
@@ -89,3 +88,11 @@ Some advantages - now you can use templates from Sparkpost
         }
         console.log(result);
     });
+
+## 1. Testing
+
+Be sure to test from one of the approved domains.
+
+````sh
+apiKey=[your_api_key] mocha
+````
