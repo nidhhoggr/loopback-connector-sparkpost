@@ -15,7 +15,12 @@ datasources.json
     {
         "sparkpost": {
             "connector": "loopback-connector-sparkpost",
-            "apiKey": "[your api key here]"
+            "apiKey": "[your api key here]",
+            "defaults": {
+              "options": {
+                "start_time": "now"
+              }
+            }
         }
     }
 
@@ -35,7 +40,9 @@ Additionaly you can set defaults
             "connector": "loopback-connector-sparkpost",
             "apiKey": "[your api key here]",
             "defaults": {
-              "from": { name: "Bob Schmoe", email: "bob.schmoe@testing.com" }
+              "content": {
+                "from": { name: "Bob Schmoe", email: "bob.schmoe@testing.com" }
+              }
             }
         }
     }
@@ -94,5 +101,5 @@ Some advantages - now you can use templates from Sparkpost
 Be sure to test from one of the approved domains.
 
 ````sh
-apiKey=[your_api_key] mocha
+apiKey=hwgfhfhjgrfhjekjheiff fromEmail=testing@tester.com startTime=2016-09-30T17:55:11 mocha basic.test.js --timeout 15000
 ````

@@ -8,6 +8,8 @@ var loopback = require('loopback'),
 
 var apiKey = process.env.apiKey;
 
+var fromEmail = process.env.fromEmail;
+
 var __SparkpostMock__ = {
   Sparkpost: function(apiKey) {
     return {
@@ -31,15 +33,13 @@ describe('Sparkpost init', function () {
   });
 
   it('should have property sparkpost with api key', function () {
-        connector = new Connector({ apiKey: apiKey });
-
+    connector = new Connector({ apiKey: apiKey });
     expect(connector).to.have.a.property('sparkpost');
     expect(connector.sparkpost.apiKey).to.equal(apiKey);
   });
 
   it('should have property sparkpost with api key', function () {
-      connector = new Connector({ apiKey: apiKey });
-
+    connector = new Connector({ apiKey: apiKey });
     expect(connector).to.have.a.property('sparkpost');
     expect(connector.sparkpost.apiKey).to.equal(apiKey);
   });
@@ -51,7 +51,14 @@ describe('Sparkpost message send', function() {
     Connector.__set__('Sparkpost', __SparkpostMock__);
     ds = new DataSource({
       connector: Connector,
-      apiKey: apiKey
+      apiKey: apiKey,
+      defaults: {
+        options: {
+          start_time: process.env.startTime || 'now',
+          open_tracking: false,
+          click_tracking: false
+        }
+      }
     });
 
     Email = loopback.Email.extend('testEmail');
@@ -60,28 +67,24 @@ describe('Sparkpost message send', function() {
 
   it('Should send - Email.send', function(done) {
     var msg = {
-      from: 'test@testing.co',
-      to: 'test2@testing.co',
+      from: fromEmail,
+      to: 'sparkpost.connector.testing@mailinator.com',
       subject: 'Test subject',
       text: 'Plain text',
       html: 'Html <b>content</b>'
     };
 
     Email.send(msg, function(err, result) {
-      console.log(err, result);
-      console.log(typeof err);
       expect(err).to.equal(null);
-      expect(result[0].email).to.equal(msg.to[0].email);
-      expect(result[0].status).to.equal('sent');
-      expect(result[0]._id).to.not.equal(null)
+      expect(result.statusCode).to.equal(200);
       done();
     });
   });
 
   it('Should send - Email.prototype.send', function(done) {
     var msg = {
-      from: 'test@testing.co',
-      to: 'test2@testing.co',
+      from: fromEmail,
+      to: 'sparkpost.connector.testing@mailinator.com',
       subject: 'Test subject',
       text: 'Plain text',
       html: 'Html <b>content</b>'
@@ -91,9 +94,7 @@ describe('Sparkpost message send', function() {
 
     email.send(function(err, result) {
       expect(err).to.equal(null);
-      expect(result[0].email).to.equal(msg.to[0].email);
-      expect(result[0].status).to.equal('sent');
-      expect(result[0]._id).to.not.equal(null)
+      expect(result.statusCode).to.equal(200);
       done();
     });
   });
