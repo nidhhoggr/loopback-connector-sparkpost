@@ -65,6 +65,29 @@ describe('Sparkpost message send', function() {
     Email.attachTo(ds);
   });
 
+  it('should contain the correct properties', function() {
+
+    var options = {
+      "to": 'sparkpost.connector.testing@mailinator.com',
+      "from": fromEmail,
+      "type": "email",
+      "content": {
+        "subject": "Thanks for registering.",
+        "template": {
+          "id": "greenback-verify-email"
+        }
+      },
+      "options": {
+        "start_time": new Date(new Date().getTime() + 30 * 60000).toISOString().slice(0, -5)
+      }
+    }
+
+    var transmissionBody = Email.getTransmissionBody(options);
+    expect(transmissionBody.options.start_time).to.equal(options.options.start_time);
+    expect(transmissionBody.options.click_tracking).to.equal(false);
+    expect(transmissionBody.options.open_tracking).to.equal(false);
+  });
+
   it('Should send - Email.send', function(done) {
     var msg = {
       from: fromEmail,
