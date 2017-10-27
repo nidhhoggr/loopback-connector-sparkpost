@@ -4,7 +4,7 @@ var loopback = require('loopback'),
     rewire = require("rewire"),
     Connector = rewire('../lib/sparkpost'),
     DataSource = require('loopback-datasource-juggler').DataSource,
-    Email, ds;
+    Email, User, ds;
 
 var apiKey = process.env.apiKey;
 
@@ -119,6 +119,47 @@ describe('Sparkpost message send', function() {
       expect(err).to.equal(null);
       expect(result.statusCode).to.equal(200);
       done();
+    });
+  });
+
+});
+
+describe('Sparkpost verify loopback user', function() {
+
+  beforeEach(function() {
+    User = loopback.User.extend('testUser');
+    var mem = new DataSource({
+      connector: 'memory'
+    });
+    User.attachTo(mem);
+    var mail = new DataSource({
+      connector: 'sparkpost',
+      apiKey: apiKey,
+      defaults: {
+        options: {
+          start_time: process.env.startTime || 'now',
+          open_tracking: false,
+          click_tracking: false
+        }
+      }
+    });
+    Email.attachTo(mail);
+  });
+
+  it('should verify a user and send an email', function(done) {
+    User.create({email: 'mock-user@example.com', password: 'password'}, (err, user) => {
+      var options = {
+        type: 'email',
+        to: user.email,
+        from: fromEmail,
+        subject: 'Thanks for registering.',
+        user: user
+      };
+      user.verify(options, (err, response) => {
+        console.log(err);
+        console.log(response);
+        done();
+      });
     });
   });
 
